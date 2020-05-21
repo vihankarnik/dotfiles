@@ -1,3 +1,3 @@
 # dotfiles
 
-Collection of my most important dotfiles.
+Collection of my important dotfiles for linux.
