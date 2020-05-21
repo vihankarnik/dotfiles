@@ -1,0 +1,8 @@
+# Activate virtualenv
+alias venv='source venv/bin/activate'
+
+#makedir function
+makedir () {
+    mkdir $1;
+    cd $1;
+}
