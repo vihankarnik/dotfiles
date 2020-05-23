@@ -23,8 +23,6 @@ set encoding=utf-8
 set ruler
 set novisualbell
 set relativenumber
-"This is a lifesaver, but applies only to ubuntu 16 and below i think
-set clipboard^=unnamedplus
 " Turn backup off, since most stuff is in SVN, git etc. anyway...
 set nobackup
 set nowb
@@ -61,7 +59,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Vim Bufferline for displaying the opened files in the command line
 Plug 'bling/vim-bufferline'
 " AutoComplete Plugin
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 " The file explorer plugin
 Plug 'preservim/nerdtree'
 " Markdown viewer
@@ -85,7 +83,7 @@ let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
 "                      \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
 "Some settings for the markdown viewer. Uncomment to override defaults
-"let g:instant_markdown_slow = 1
+let g:instant_markdown_slow = 1
 let g:instant_markdown_autostart = 0
 map <leader>md :InstantMarkdownPreview<CR>
 "let g:instant_markdown_open_to_the_world = 1
