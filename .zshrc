@@ -104,7 +104,6 @@ source $ZSH/oh-my-zsh.sh
 #The power of the command line is in my hands.
 shuf -n 1 ~/.jojoquotes | cowsay | lolcat
 
-
 #Razer command
 #xinput set-prop "Razer Razer DeathAdder" "Device Accel Constant Deceleration" 5
 

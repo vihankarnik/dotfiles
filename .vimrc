@@ -1,5 +1,5 @@
-colorscheme molokai
 syntax enable
+inoremap jk <ESC>
 set so=7
 set tabstop=4
 set shiftwidth=4
