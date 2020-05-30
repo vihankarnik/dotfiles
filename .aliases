@@ -6,3 +6,6 @@ function clear() {
     reset
     shuf -n 1 ~/.jojoquotes | cowsay | lolcat
 }
+function com() {
+    git commit -m "${*}"
+}

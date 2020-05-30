@@ -5,7 +5,7 @@ set tabstop=4
 set shiftwidth=4
 set autoindent
 set smarttab
-set softtabstop=4   " number of spaces in tab when editing
+"set softtabstop=4   " number of spaces in tab when editing
 set expandtab       " tabs are spaces
 set smartindent
 set number              " show line numbers
@@ -73,7 +73,7 @@ call plug#end()
 let g:airline_theme='simple'
 
 " Setting to turn on the Hard Mode plugin
-"let g:hardtime_default_on=1
+let g:hardtime_default_on=1
 " The is the keybinding for toggling NERDTree plugin
 map <C-n> :NERDTreeToggle<CR>
 
