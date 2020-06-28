@@ -1,11 +1,9 @@
 # Activate virtualenv
 alias venv='source venv/bin/activate'
+alias startssh='service ssh start'
 
 #clear function
 function clear() {
     reset
     shuf -n 1 ~/.jojoquotes | cowsay | lolcat
-}
-function com() {
-    git commit -m "${*}"
 }

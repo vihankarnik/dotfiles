@@ -19,6 +19,7 @@ set wildignore=*.o,*~,*.pyc
 set showmatch
 set incsearch           " search as characters are entered
 "set hlsearch            " highlight matches
+set ignorecase
 set encoding=utf-8
 set ruler
 set novisualbell
