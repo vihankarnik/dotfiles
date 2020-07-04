@@ -1,6 +1,5 @@
 # Activate virtualenv
 alias venv='source venv/bin/activate'
-alias startssh='service ssh start'
 
 #clear function
 function clear() {
