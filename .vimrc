@@ -52,8 +52,8 @@ call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
 
-" Vim HardTime
-Plug 'takac/vim-hardtime'
+" Vim HardTime PLS NO
+" Plug 'takac/vim-hardtime'
 " Vim Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
