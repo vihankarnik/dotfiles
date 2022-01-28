@@ -1,97 +1,111 @@
 syntax enable
-inoremap jk <ESC>
-set so=7
-set tabstop=4
-set shiftwidth=4
-set autoindent
-set smarttab
-"set softtabstop=4   " number of spaces in tab when editing
-set expandtab       " tabs are spaces
-set smartindent
-set number              " show line numbers
-set wrap
-set nocompatible
-" set cursorline          " highlight current line
-filetype indent on      " load filetype-specific indent files
-filetype plugin on
-set wildmenu
-set wildignore=*.o,*~,*.pyc
-set showmatch
-set incsearch           " search as characters are entered
-"set hlsearch            " highlight matches
-set ignorecase
-set encoding=utf-8
-set ruler
-set novisualbell
-set relativenumber
-" Turn backup off, since most stuff is in SVN, git etc. anyway...
-set nobackup
-set nowb
-set noswapfile
-" Some mappings for moving thorugh buffers
+
+" saves and runs .py file
+autocmd filetype python nnoremap <F9> :w <bar> !python "%"<CR><CR>
+" saves and compiles .cpp files using g++
+autocmd filetype cpp nnoremap <F9> :w <bar> !g++ -std=c++14 % -o %:r -Wl,--stack,268435456<CR><CR>
+" runs compiled file
+autocmd filetype cpp nnoremap <F10> :!%:r<CR><CR>
+
+inoremap jk <Esc>
+
+" some mappings for moving thorugh buffers
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
-" A shortcut to insert the data in DoW-Day-Month-Year format
+" a shortcut to insert the data in DoW-Day-Month-Year format
 inoremap <leader>date <C-r>=strftime("%a-%d-%m-%Y")<CR>
 
-"Below is for automatic installation of vim-plug
+set scrolloff=11
+set guifont=Ubuntu\ Mono:h16
+
+set tabstop=4
+set shiftwidth=4
+set autoindent
+set smarttab
+set expandtab       " tabs are spaces
+set smartindent
+filetype plugin indent on       " load filetype-specific indent files
+
+set number              " shows line numbers
+set relativenumber      " shows numbers relative to current position above and below
+set cursorline          " highlights current line
+set wrap
+set nocompatible
+set wildmenu
+set wildignore=*.o,*~,*.pyc
+set noshowmode      " stops showing mode in vim command line, mode is already displayed in statusline
+set showmatch       " highlights matching bracket when one end selected
+set guioptions-=T   " removes toolbar from gvim
+set guioptions-=m
+
+set backspace=indent,eol,start
+set incsearch           " search as characters are entered
+set hlsearch            " highlight matches
+set ignorecase
+set encoding=utf-8
+set ruler
+set novisualbell
+set clipboard=unnamed
+"set hidden      " allows to open new buffer without saving
+
+" turn backup off, since most stuff is in SVN, git etc. anyway...
+set nobackup
+set nowritebackup
+set noswapfile
+
+:command R e $MYVIMRC   " shortcut for opening vimrc
+
+" automatic installation of vim-plug and update
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-"Below is for initializing and installing new plugins
 
-" Specify a directory for plugins
-" - For Neovim: stdpath('data') . '/plugged'
-" - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.vim/plugged')
-
-" Make sure you use single quotes
-
-" Vim HardTime PLS NO
-" Plug 'takac/vim-hardtime'
-" Vim Airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-" Vim Bufferline for displaying the opened files in the command line
-Plug 'bling/vim-bufferline'
-" AutoComplete Plugin
-" Plug 'Valloric/YouCompleteMe'
-" The file explorer plugin
-Plug 'preservim/nerdtree'
-" Markdown viewer
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-" VimWiki for taking notes
-Plug 'vimwiki/vimwiki'
-" Initialize plugin system
+" below is for initializing and installing new plugins
+call plug#begin('~/vimfiles/plugged')
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'tmsvg/pear-tree'
 call plug#end()
 
-" Setting to turn on the Simple theme in vim-airline
-let g:airline_theme='simple'
+" Pear-Tree settings
+" Pair expansion is dot-repeatable by default:
+let g:pear_tree_repeatable_expand = 0
+" Smart pairs are disabled by default:
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
+" mappings:
+imap <BS> <Plug>(PearTreeBackspace)
+imap <CR> <Plug>(PearTreeExpand)
+imap jk <Plug>(PearTreeFinishExpansion)
 
-" Setting to turn on the Hard Mode plugin
-let g:hardtime_default_on=1
-" The is the keybinding for toggling NERDTree plugin
-map <C-n> :NERDTreeToggle<CR>
 
-" This is for changing the vimwiki syntax to markdown
-let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
-"let g:vimwiki_list = [{'path': '~/vimwiki/',
-"                      \ 'syntax': 'markdown', 'ext': '.md'}]
-let g:vimwiki_global_ext = 0
-"Some settings for the markdown viewer. Uncomment to override defaults
-let g:instant_markdown_slow = 1
-let g:instant_markdown_autostart = 0
-map <leader>md :InstantMarkdownPreview<CR>
-"let g:instant_markdown_open_to_the_world = 1
-"let g:instant_markdown_allow_unsafe_content = 1
-"let g:instant_markdown_allow_external_content = 0
-"let g:instant_markdown_mathjax = 1
-"let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
-"let g:instant_markdown_autoscroll = 0
-"let g:instant_markdown_port = 8888
-"let g:instant_markdown_python = 1
+" tabline settings
+let g:airline#extensions#tabline#enabled = 1            " enables airline tabline
+let g:airline#extensions#tabline#show_close_button = 0 " remove 'X' at the end of the tabline
+let g:airline#extensions#tabline#fnamemod = ':t'        " disables file paths in the tab
+let g:airline#extensions#tabline#show_tab_count = 0     " dont show tab numbers on the right
+let g:airline#extensions#tabline#tab_nr_type = 1        " indexes tabs for easy switching
+let g:airline#extensions#tabline#tab_min_count = 2      " minimum of 2 tabs needed to display the tabline
+let g:airline#extensions#tabline#tabs_label = 't'
+let g:airline#extensions#tabline#buffers_label = 'b'
+let g:airline#extensions#tabline#show_buffers = 1       " shows buffer with a single tab
+let g:airline#extensions#tabline#show_splits = 0       " disables the buffer name that displays on the right of the tabline
+
+" airline settings
+let g:airline_theme='simple'    " setting to turn on the Simple theme in vim-airline
+colorscheme molokai
+hi LineNr guifg=#E6DB74
+hi CursorLine guibg=#282828
+
+" changes symbols to unicode
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+" Unicode Symbols
+let g:airline_symbols = {'linenr': ' ㏑:', 'modified': '+', 'whitespace': '☲', 'branch': 'ᚠ', 'ellipsis': '...', 'paste': 'PASTE', 'maxlinenr': '☰', 'readonly': 'Read-Only', 'spell': 'SPELL', 'space': ' ', 'dirty': '!', 'colnr': '  Col:', 'keymap': 'Keymap:', 'crypt': '🔒', 'notexists': 'Ɇ'}
