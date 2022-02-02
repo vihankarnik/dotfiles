@@ -66,7 +66,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 " below is for initializing and installing new plugins
-call plug#begin('~/vimfiles/plugged')
+call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'tmsvg/pear-tree'
