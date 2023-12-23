@@ -2,10 +2,16 @@ syntax enable
 
 " saves and runs .py file
 autocmd filetype python nnoremap <F9> :w <bar> !python "%"<CR><CR>
+
 " saves and compiles .cpp files using g++
 autocmd filetype cpp nnoremap <F9> :w <bar> !g++ -std=c++14 % -o %:r -Wl,--stack,268435456<CR><CR>
 " runs compiled file
 autocmd filetype cpp nnoremap <F10> :!%:r<CR><CR>
+
+" saves and compiles .c files using gcc
+autocmd filetype c nnoremap <F9> :w <bar> !gcc % -o %:r -Wl,--stack,268435456<CR><CR>
+" runs compiled file
+autocmd filetype c nnoremap <F10> :!%:r<CR><CR>
 
 inoremap jk <Esc>
 
@@ -60,7 +66,7 @@ set noswapfile
 
 " automatic installation of vim-plug and update
 if empty(glob('~/vimfiles/autoload/plug.vim'))
-    silent !curl -fLo "C:\Users\Vihan K\vimfiles\autoload\plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    silent !curl -fLo "C:\Users\Vihan Karnik\vimfiles\autoload\plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -69,6 +75,7 @@ call plug#begin('~/vimfiles/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'tmsvg/pear-tree'
+    Plug 'stillwwater/wincap.vim'
 call plug#end()
 
 " Pear-Tree settings
@@ -108,3 +115,8 @@ if !exists('g:airline_symbols')
 endif
 " Unicode Symbols
 let g:airline_symbols = {'linenr': ' ㏑:', 'modified': '+', 'whitespace': '☲', 'branch': 'ᚠ', 'ellipsis': '...', 'paste': 'PASTE', 'maxlinenr': '☰', 'readonly': 'Read-Only', 'spell': 'SPELL', 'space': ' ', 'dirty': '!', 'colnr': '  Col:', 'keymap': 'Keymap:', 'crypt': '🔒', 'notexists': 'Ɇ'}
+
+" wincap something
+let g:wincap_color = ''  " Override color (ex. 1C1C1C)
+let g:wincap_vim_exe = 'gvim.exe'
+let g:wincap_plugin_exe = g:plug_home . '\wincap.vim\bin\wincap.exe'
