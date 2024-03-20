@@ -10,6 +10,9 @@ autocmd filetype cpp nnoremap <F10> :!%:r<CR><CR>
 
 " saves and compiles .c files using gcc
 autocmd filetype c nnoremap <F9> :w <bar> !gcc % -o %:r -Wl,--stack,268435456<CR><CR>
+" needed this for gtk4 on windows
+" autocmd filetype c nnoremap <F9> :w <bar> !gcc % -o %:r -Wl,--stack,268435456 -IC:/msys64/mingw64/bin/../include/gtk-4.0 -IC:/msys64/mingw64/bin/../include/pango-1.0 -IC:/msys64/mingw64/bin/../include/harfbuzz -IC:/msys64/mingw64/bin/../include/gdk-pixbuf-2.0 -IC:/msys64/mingw64/bin/../include/cairo -IC:/msys64/mingw64/bin/../include/glib-2.0 -IC:/msys64/mingw64/bin/../lib/glib-2.0/include -IC:/msys64/mingw64/bin/../include/freetype2 -IC:/msys64/mingw64/bin/../include/graphene-1.0 -IC:/msys64/mingw64/bin/../lib/graphene-1.0/include -mfpmath=sse -msse -msse2 -IC:/msys64/mingw64/bin/../include -IC:/msys64/mingw64/bin/../include/fribidi -IC:/msys64/mingw64/bin/../include/webp -DLIBDEFLATE_DLL -IC:/msys64/mingw64/bin/../include/libpng16 -IC:/msys64/mingw64/bin/../include/pixman-1 -LC:/msys64/mingw64/bin/../lib -lgtk-4 -lpangowin32-1.0 -lharfbuzz -lpangocairo-1.0 -lpango-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lcairo -lgraphene-1.0 -lgio-2.0 -lglib-2.0 -lintl -lgobject-2.0<CR><CR>
+
 " runs compiled file
 autocmd filetype c nnoremap <F10> :!%:r<CR><CR>
 
@@ -25,7 +28,7 @@ nnoremap <silent> ]B :blast<CR>
 inoremap <leader>date <C-r>=strftime("%a-%d-%m-%Y")<CR>
 
 set scrolloff=11
-set guifont=Ubuntu\ Mono:h16
+set guifont=Ubuntu\ Mono:h14
 
 set tabstop=4
 set shiftwidth=4
@@ -67,10 +70,21 @@ set noswapfile
 :command R e $MYVIMRC   " shortcut for opening vimrc
 
 " automatic installation of vim-plug and update
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" if its on windows
+if has('win32') || has('win64') || has('win16')
+    if empty(glob('~/vimfiles/autoload/plug.vim'))
+        silent !curl -fLo "C:\Users\Vihan Karnik\vimfiles\autoload\plug.vim" 
+        \ --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
+
+" otherwise it has linux
+else
+    if empty(glob('~/.vim/autoload/plug.vim'))
+        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
 endif
 
 " below is for initializing and installing new plugins
