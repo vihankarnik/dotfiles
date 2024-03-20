@@ -59,6 +59,7 @@ set ignorecase
 set encoding=utf-8
 set ruler
 set novisualbell
+set belloff=all
 set clipboard=unnamed
 "set hidden      " allows to open new buffer without saving
 
@@ -66,6 +67,9 @@ set clipboard=unnamed
 set nobackup
 set nowritebackup
 set noswapfile
+
+" prefer vertical orientation when using :diffsplit
+set diffopt+=vertical
 
 :command R e $MYVIMRC   " shortcut for opening vimrc
 
