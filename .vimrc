@@ -2,14 +2,20 @@ syntax enable
 
 " saves and runs .py file
 autocmd filetype python nnoremap <F9> :w <bar> !python "%"<CR><CR>
+
 " saves and compiles .cpp files using g++
 autocmd filetype cpp nnoremap <F9> :w <bar> !g++ -std=c++14 % -o %:r -Wl,--stack,268435456<CR><CR>
 " runs compiled file
 autocmd filetype cpp nnoremap <F10> :!%:r<CR><CR>
 
+" saves and compiles .c files using gcc
+autocmd filetype c nnoremap <F9> :w <bar> !gcc % -o %:r -Wl,--stack,268435456<CR><CR>
+" runs compiled file
+autocmd filetype c nnoremap <F10> :!%:r<CR><CR>
+
 inoremap jk <Esc>
 
-" some mappings for moving thorugh buffers
+" some mappings for moving through buffers
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
@@ -40,6 +46,8 @@ set noshowmode      " stops showing mode in vim command line, mode is already di
 set showmatch       " highlights matching bracket when one end selected
 set guioptions-=T   " removes toolbar from gvim
 set guioptions-=m
+set termguicolors   " most terminals are capable of using TrueColor
+set formatoptions-=o    " stops vim from starting new line with comment when ending with one
 
 set backspace=indent,eol,start
 set incsearch           " search as characters are entered

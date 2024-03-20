@@ -46,6 +46,8 @@ set noshowmode      " stops showing mode in vim command line, mode is already di
 set showmatch       " highlights matching bracket when one end selected
 set guioptions-=T   " removes toolbar from gvim
 set guioptions-=m   " removes menu from gvim
+set termguicolors   " most terminals are capable of using TrueColor
+set formatoptions-=o    " stops vim from starting new line with comment when ending with one
 
 set backspace=indent,eol,start
 set incsearch           " search as characters are entered
@@ -66,7 +68,8 @@ set noswapfile
 
 " automatic installation of vim-plug and update
 if empty(glob('~/vimfiles/autoload/plug.vim'))
-    silent !curl -fLo "C:\Users\Vihan Karnik\vimfiles\autoload\plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    silent !curl -fLo "C:\Users\Vihan Karnik\vimfiles\autoload\plug.vim" 
+    \ --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -75,7 +78,6 @@ call plug#begin('~/vimfiles/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'tmsvg/pear-tree'
-    Plug 'stillwwater/wincap.vim'
 call plug#end()
 
 " Pear-Tree settings
@@ -115,8 +117,3 @@ if !exists('g:airline_symbols')
 endif
 " Unicode Symbols
 let g:airline_symbols = {'linenr': ' ㏑:', 'modified': '+', 'whitespace': '☲', 'branch': 'ᚠ', 'ellipsis': '...', 'paste': 'PASTE', 'maxlinenr': '☰', 'readonly': 'Read-Only', 'spell': 'SPELL', 'space': ' ', 'dirty': '!', 'colnr': '  Col:', 'keymap': 'Keymap:', 'crypt': '🔒', 'notexists': 'Ɇ'}
-
-" wincap something
-let g:wincap_color = ''  " Override color (ex. 1C1C1C)
-let g:wincap_vim_exe = 'gvim.exe'
-let g:wincap_plugin_exe = g:plug_home . '\wincap.vim\bin\wincap.exe'
