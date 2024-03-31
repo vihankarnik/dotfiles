@@ -17,6 +17,7 @@ autocmd filetype c nnoremap <F9> :w <bar> !gcc % -o %:r -Wl,--stack,268435456 &&
 " runs compiled file
 autocmd filetype c nnoremap <F10> :!%:r<CR><CR>
 
+" chad mapping to become true vim user
 inoremap jk <Esc>
 
 " some mappings for moving through buffers
@@ -24,6 +25,9 @@ nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
+
+" shortcut to open file tree split vertically
+nnoremap <silent> <C-n> :Vexplore<CR>
 
 " a shortcut to insert the data in DoW-Day-Month-Year format
 inoremap <leader>date <C-r>=strftime("%a-%d-%m-%Y")<CR>
