@@ -4,6 +4,11 @@ alias venv='source venv/bin/activate'
 alias cmd='cmd.exe'
 alias powershell='powershell.exe'
 
+# maps gvim (windows) to gvim.exe (in PATH) and detaches it
+gvim() {
+  cmd.exe /c start "" gvim.exe "$@"
+}
+
 #clear function
 function clear() {
     reset
@@ -14,6 +19,6 @@ function clear() {
 alias github='eval $(ssh-agent) && ssh-add ~/.ssh/githubkey ~/.ssh/gitlabkey'
 
 # minecraft commands
-alias t="tmux attach -t $1"
-alias j="sudo nice -n -20 java -Xms2G -Xmx2G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=8 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=”https://mcflags.emc.gs” -Daikars.new.flags=true -jar server.jar nogui"
-alias k="~/terraria/1412/TerrariaServer.bin.x86_64 -config ~/terraria/1412/serverconfig -priority 1"
+# alias t="tmux attach -t $1"
+# alias j="sudo nice -n -20 java -Xms2G -Xmx2G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=8 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=”https://mcflags.emc.gs” -Daikars.new.flags=true -jar server.jar nogui"
+# alias k="~/terraria/1412/TerrariaServer.bin.x86_64 -config ~/terraria/1412/serverconfig -priority 1"
