@@ -101,6 +101,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'tmsvg/pear-tree'
+    Plug 'tpope/vim-surround'
 call plug#end()
 
 " Pear-Tree settings
